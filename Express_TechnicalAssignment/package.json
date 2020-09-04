@@ -1,0 +1,24 @@
+{
+  "name": "TechnicalAssignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-graphql": "^0.11.0",
+    "graphql": "^15.3.0",
+    "request": "^2.88.2",
+    "stripe": "^8.92.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
