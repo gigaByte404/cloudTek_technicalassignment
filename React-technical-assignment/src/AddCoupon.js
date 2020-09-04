@@ -7,7 +7,7 @@ class AddCoupon extends Component {
         this.state = {
             couponId: '',
             percentOff: '',
-            duration: '',
+            duration: 'repeating',
             durationInMonths: ''
         };
     
@@ -54,7 +54,7 @@ class AddCoupon extends Component {
                 {
                     couponId: '',
                     percentOff: '',
-                    duration: '',
+                    duration: 'repeating',
                     durationInMonths: ''
                 }
               );
@@ -81,7 +81,10 @@ class AddCoupon extends Component {
                 </label>
                 <label>
                     Duration:
-                    <input type="text" required name="duration" value={this.state.duration} onChange={this.handleChange} />
+                    <select name="duration" required value={this.state.duration} onChange={this.handleChange}>
+                      <option>select</option>                    
+                      <option value="repeating">Repeating</option>
+                    </select>
                 </label>
                 <label>
                     Duration in Months:
