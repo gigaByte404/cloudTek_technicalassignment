@@ -1,21 +1,35 @@
 const stripe = require('stripe')('sk_test_51HNElzAA9c360wJEM7n6j1g3vKI819Pp8nlm0gWlK2YFThGcjwKJnmwzHzufWQO0Lk3pLuMinlYJ3qyJm6hza0oz00kPsaHbEG');
 
 exports.createCoupon = async (couponId,percentOff, duration, durationInMonths, callback) => {
-    const coupon = await stripe.coupons.create({
-    id:couponId,
-    percent_off: percentOff,
-    duration: duration,
-    duration_in_months: durationInMonths,
-    }).then(
+    var couponObject;
+    if(duration=="once"){
+        couponObject = {
+            id:couponId,
+            percent_off: percentOff,
+            duration: duration,
+        }
+    }
+
+    if(duration=="repeating"){
+        couponObject = {
+            id:couponId,
+            percent_off: percentOff,
+            duration: duration,
+            duration_in_months: durationInMonths
+
+        }
+    }
+
+    const coupon = await stripe.coupons.create(couponObject).then(
         function(result){
             callback(result)
         },
         function(err) {
             if(err.raw.code == "resource_already_exists"){
-                callback({"code": "coupon_already_exists"});
-                
+                callback({"code": "coupon_already_exists"});                
             } 
             else {
+                console.log(err);
                 callback({"code": "invalid_request"});
             }
         }

@@ -3,16 +3,19 @@ const bodyParser = require('body-parser');
 const express = require('express');
 var cors = require('cors');
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 const app = express();
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.raw());
 app.use(cors());
-// stripecoupons.createCoupon("50_off", "40", 'repeating', "4");
-// stripecoupons.deleteCoupon("50_off");
-// stripecoupons.deleteCoupon("50_off");
+
+app.get('/', (req, res, next) => {
+    res.send("<h1>EndPoints are:</h1><p>/api/addcoupons</p>/api/allcoupons</p>/api/removecoupon</p>");
+});
+
 app.post('/api/addcoupon', (req, res, next) => {
     const reqBody = req.body;
     const couponId = reqBody.couponId;
@@ -51,5 +54,5 @@ app.get('/api/allcoupons', (req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`)
+    console.log(`App listening at Port: ${port}`)
 });
